@@ -1,17 +1,20 @@
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+const HomePage = lazy(() => import('./HomePage/HomePage'));
+const MoviesPage = lazy(() => import('./MoviePage/MoviePage'));
+const TrendingHomeView = lazy(() =>
+  import('../views/TrendingHomeViews/TrendingHomeView')
+);
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        textTransform: 'uppercase',
-        color: '#010101',
-      }}
-    >
-      React homework template
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<HomePage />}>
+          <Route index element={<TrendingHomeView />} />
+          <Route path="movies" element={<MoviesPage />} />
+          {/* <Route path="movies" element={<MoviesPage />} /> */}
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
