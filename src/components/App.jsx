@@ -1,8 +1,10 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+// import { InnerNavigator } from './InnerNavigator/InnerNavigator';
 // import MoviePage from './MoviePage/MoviePage';
 // import MoviePageView from './MoviePage/MoviePageView/MoviePageView';
 // import HomePage from './HomePage/HomePage';
+const InnerNavigator = lazy(() => import('./InnerNavigator/InnerNavigator'));
 const HomePage = lazy(() => import('./HomePage/HomePage'));
 const MoviePage = lazy(() => import('./MoviePage/MoviePage'));
 
@@ -19,7 +21,9 @@ export const App = () => {
         <Route path="/" element={<HomePage />}>
           <Route index element={<TrendingHomeView />} />
           <Route path="movies" element={<MoviePage />}>
-            <Route path=":movieId" element={<MoviePageView />} />
+            <Route path=":movieId" element={<MoviePageView />}>
+              <Route index element={<InnerNavigator />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
