@@ -14,8 +14,6 @@ const MoviePageView = () => {
     movieApi.fetchMovieById(movieId).then(setMovie);
   }, [movieId]);
 
-  console.log(movie);
-
   return (
     <>
       {!movie && <h2>Loading...</h2>}

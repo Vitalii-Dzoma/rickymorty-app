@@ -7,7 +7,8 @@ import { Routes, Route } from 'react-router-dom';
 const InnerNavigator = lazy(() => import('./InnerNavigator/InnerNavigator'));
 const HomePage = lazy(() => import('./HomePage/HomePage'));
 const MoviePage = lazy(() => import('./MoviePage/MoviePage'));
-
+const Cast = lazy(() => import('./Cast/Cast'));
+const Review = lazy(() => import('./Reviews/Reviews'));
 const MoviePageView = lazy(() =>
   import('./MoviePage/MoviePageView/MoviePageView')
 );
@@ -20,9 +21,11 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<TrendingHomeView />} />
-          <Route path="movies" element={<MoviePage />}>
-            <Route path=":movieId" element={<MoviePageView />}>
-              <Route index element={<InnerNavigator />} />
+          <Route path="movies" element={<MoviePage />} />
+          <Route path=":movieId/" element={<MoviePageView />}>
+            <Route path=":movieId" element={<InnerNavigator />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Review />} />
             </Route>
           </Route>
         </Route>

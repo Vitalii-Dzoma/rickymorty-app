@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { PageHeading } from 'components/PageHeading/PageHeading';
 
@@ -22,6 +22,7 @@ const TrendingHomeView = () => {
           ))}
         </ul>
       )}
+      <Outlet />
     </>
   );
 };

@@ -15,12 +15,16 @@ export async function fetchMovieById(id) {
   return response.data;
 }
 
-// export async function fetchBooks() {
-//   const response = await axios.get('/books');
-//   return response.data;
-// }
+export async function fetchMoviesDetails(id) {
+  const response = await axios.get(
+    `/movie/${id}/credits?api_key=3c97a1babd597f31c1fa5b3567357dfb`
+  );
+  return response.data.cast;
+}
 
-// export async function fetchBookById(bookId) {
-//   const response = await axios.get(`/books/${bookId}?_expand=author`);
-//   return response.data;
-// }
+export async function fetchReviews(id) {
+  const response = await axios.get(
+    `/movie/${id}/reviews?api_key=3c97a1babd597f31c1fa5b3567357dfb`
+  );
+  return response.data.results;
+}
