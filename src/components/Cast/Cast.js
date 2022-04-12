@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Img } from './Cast.styled';
 import { DivImage } from './Cast.styled';
-import { PageHeading } from 'components/PageHeading/PageHeading';
 
 const Cast = () => {
   const { movieId } = useParams();

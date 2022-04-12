@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Ul } from './Reviews.styled';
-import { PageHeading } from 'components/PageHeading/PageHeading';
 
 const Reviews = () => {
   const { movieId } = useParams();

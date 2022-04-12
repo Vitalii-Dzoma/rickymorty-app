@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Link } from './InnerNavigator.styled';
 
 const InnerNavigator = () => {

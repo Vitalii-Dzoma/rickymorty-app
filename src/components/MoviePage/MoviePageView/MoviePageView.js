@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { Description } from './MoviePageView.styled';
 import { Img } from './MoviePageView.styled';
 import { Div } from './MoviePageView.styled';
