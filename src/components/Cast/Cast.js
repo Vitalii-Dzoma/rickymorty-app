@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Img } from './Cast.styled';
+import { DivImage } from './Cast.styled';
 import { PageHeading } from 'components/PageHeading/PageHeading';
 
 const Cast = () => {
@@ -15,20 +16,23 @@ const Cast = () => {
 
   return (
     <>
-      {movies && (
-        <ul>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Img
-                src={`https://image.tmdb.org/t/p/w200/${movie.profile_path}`}
-              ></Img>
-
-              <Link to={`/movies/${movie.id}`}>{movie.name}</Link>
-              <p>Character: {movie.character}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {movies && (
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {movies.map(movie => (
+              <li key={movie.id}>
+                <Img
+                  src={`https://image.tmdb.org/t/p/w200/${movie.profile_path}`}
+                ></Img>
+                <DivImage>
+                  <Link to={`/movies/${movie.id}`}>{movie.name}</Link>
+                  <p>Character: {movie.character}</p>
+                </DivImage>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Suspense>
     </>
   );
 };

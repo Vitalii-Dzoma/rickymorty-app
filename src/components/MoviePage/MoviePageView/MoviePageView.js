@@ -6,7 +6,7 @@ import { Img } from './MoviePageView.styled';
 import { Div } from './MoviePageView.styled';
 import * as movieApi from '../../../services/movie-api';
 
-const MoviePageView = () => {
+const MoviePageView = ({ goBack }) => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -17,8 +17,11 @@ const MoviePageView = () => {
   return (
     <>
       {!movie && <h2>Loading...</h2>}
+      <button type="button" onClick={goBack}>
+        Go Back
+      </button>
       {movie && (
-        <>
+        <div key={movie.id}>
           <h2>{movie.name}</h2>{' '}
           <Div>
             <Img
@@ -43,7 +46,7 @@ const MoviePageView = () => {
             </Description>
           </Div>
           <Outlet />
-        </>
+        </div>
       )}
     </>
   );

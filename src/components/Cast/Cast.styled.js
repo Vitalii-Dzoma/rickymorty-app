@@ -11,3 +11,10 @@ export const Div = styled.div`
 export const Description = styled.div`
   margin-left: 10px;
 `;
+
+export const DivImage = styled.li`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+`;

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 // import { InnerNavigator } from './InnerNavigator/InnerNavigator';
 // import MoviePage from './MoviePage/MoviePage';
 // import MoviePageView from './MoviePage/MoviePageView/MoviePageView';
@@ -16,13 +16,20 @@ const TrendingHomeView = lazy(() =>
   import('../views/TrendingHomeViews/TrendingHomeView')
 );
 export const App = () => {
+  const navigate = useNavigate();
+  const goBackBtn = () => {
+    navigate(-1, { replace: true });
+  };
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<TrendingHomeView />} />
-          <Route path="movies" element={<MoviePage />} />
-          <Route path=":movieId/" element={<MoviePageView />}>
+          <Route path="movies" element={<MoviePage goBack={goBackBtn} />} />
+          <Route
+            path=":movieId/"
+            element={<MoviePageView goBack={goBackBtn} />}
+          >
             <Route path=":movieId" element={<InnerNavigator />}>
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Review />} />

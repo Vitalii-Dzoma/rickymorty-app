@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Ul } from './Reviews.styled';
 import { PageHeading } from 'components/PageHeading/PageHeading';
@@ -15,7 +15,7 @@ const Reviews = () => {
 
   return (
     <>
-      {reviews ? (
+      {reviews && reviews.length > 0 ? (
         <Ul>
           {reviews.map(review => (
             <li key={review.id}>
@@ -25,7 +25,7 @@ const Reviews = () => {
           ))}
         </Ul>
       ) : (
-        <p>There are no reviews yet</p>
+        <h3>There are no reviews yet</h3>
       )}
     </>
   );

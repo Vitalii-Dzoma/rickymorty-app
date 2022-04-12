@@ -5,7 +5,7 @@ const InnerNavigator = () => {
   return (
     <>
       <ul>
-        Additional informtion
+        <h3>Additional informtion</h3>
         <li>
           <Link to="cast">Cast</Link>
         </li>

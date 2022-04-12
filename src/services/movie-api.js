@@ -28,3 +28,10 @@ export async function fetchReviews(id) {
   );
   return response.data.results;
 }
+
+export async function searchMovies(query) {
+  const response = await axios.get(
+    `/search/movie/?api_key=3c97a1babd597f31c1fa5b3567357dfb&query=${query}`
+  );
+  return response.data.results;
+}
