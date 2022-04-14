@@ -31,7 +31,7 @@ export async function fetchReviews(id) {
 
 export async function searchMovies(query) {
   const response = await axios.get(
-    `/search/movie/?api_key=3c97a1babd597f31c1fa5b3567357dfb&query=${query}`
+    `/search/movie/?api_key=3c97a1babd597f31c1fa5b3567357dfb&&language=en-US&query=${query}&page=1&include_adult=false`
   );
   return response.data.results;
 }

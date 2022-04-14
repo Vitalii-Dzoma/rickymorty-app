@@ -28,9 +28,6 @@ const MoviePage = ({ goBack }) => {
 
   return (
     <>
-      <button type="button" onClick={goBack}>
-        Go Back
-      </button>
       <form onSubmit={HandleSubmit}>
         <input
           type="text"
@@ -44,10 +41,14 @@ const MoviePage = ({ goBack }) => {
 
         <button type="submit">Search</button>
       </form>
+
       <Outlet />
 
       {movies && (
         <ul>
+          <button type="button" onClick={goBack}>
+            Go Back
+          </button>
           <PageHeading>Results</PageHeading>
           {movies.map(movie => (
             <li key={movie.id}>
