@@ -17,15 +17,17 @@ const TrendingHomeView = lazy(() =>
 );
 export const App = () => {
   const navigate = useNavigate();
+
   const goBackBtn = () => {
     navigate(-1, { replace: true });
   };
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<TrendingHomeView />} />
-          <Route path="movies" element={<MoviePage goBack={goBackBtn} />} />
+          <Route path="movies" element={<MoviePage />} />
           <Route
             path=":movieId/"
             element={<MoviePageView goBack={goBackBtn} />}
