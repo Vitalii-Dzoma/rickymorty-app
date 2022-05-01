@@ -6,29 +6,24 @@ import { DivImage } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState(null);
+  const [movie, setMovies] = useState(null);
 
   useEffect(() => {
-    movieAPI.fetchMoviesDetails(movieId).then(setMovies);
+    movieAPI.fetchCharactersById(movieId).then(setMovies);
   }, [movieId]);
-  console.log(movies);
 
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        {movies && (
+        {movie && (
           <ul style={{ listStyle: 'none', padding: 0 }}>
-            {movies.map(movie => (
-              <li key={movie.id}>
-                <Img
-                  src={`https://image.tmdb.org/t/p/w200/${movie.profile_path}`}
-                ></Img>
-                <DivImage>
-                  <Link to={`/movies/${movie.id}`}>{movie.name}</Link>
-                  <p>Character: {movie.character}</p>
-                </DivImage>
-              </li>
-            ))}
+            <li key={movie.id}>
+              <DivImage>
+                <Link to={`/movies/${movie.id}`}>{movie.name}</Link>
+                <p>Character: {movie.name}</p>
+                <p>Episodes: {movie.episode && movie.episode.length}</p>
+              </DivImage>
+            </li>
           </ul>
         )}
       </Suspense>

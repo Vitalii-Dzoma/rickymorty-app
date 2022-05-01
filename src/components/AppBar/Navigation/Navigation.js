@@ -4,7 +4,7 @@ export const Navigation = () => {
   return (
     <nav>
       <Link to="/">Home</Link>
-      <Link to="movies">Movies</Link>
+      <Link to="characters">Characters</Link>
     </nav>
   );
 };

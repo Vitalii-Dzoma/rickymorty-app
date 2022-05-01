@@ -27,7 +27,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<TrendingHomeView />} />
-          <Route path="movies" element={<MoviePage />} />
+          <Route path="characters" element={<MoviePage />} />
           <Route
             path=":movieId/"
             element={<MoviePageView goBack={goBackBtn} />}

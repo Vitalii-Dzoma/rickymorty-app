@@ -7,17 +7,21 @@ const TrendingHomeView = () => {
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    movieAPI.fetchTrendingMovies().then(setMovies);
+    movieAPI.fetchAllCharacters().then(setMovies);
   }, []);
+
+  console.log(movies);
 
   return (
     <>
-      <PageHeading>Trending today</PageHeading>
+      <PageHeading>Ricky&Morty</PageHeading>
       {movies && (
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/characters/${movie.id}`}>
+                {movie.name}, Status: {movie.status}
+              </Link>
             </li>
           ))}
         </ul>

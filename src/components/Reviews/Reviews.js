@@ -1,31 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Ul } from './Reviews.styled';
+import toast from 'react-hot-toast';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState(null);
+  const [review, setReviews] = useState(null);
 
   useEffect(() => {
-    movieAPI.fetchReviews(movieId).then(setReviews);
+    movieAPI.fetchAllLocation(movieId).then(setReviews);
+    console.log(review);
+    if (!review) {
+      toast.error('There is no location');
+    }
+    toast.success('Vuala');
   }, [movieId]);
-  console.log(reviews);
 
   return (
     <>
-      {reviews && reviews.length > 0 ? (
-        <Ul>
-          {reviews.map(review => (
+      <Suspense fallback={<div>Loading...</div>}>
+        {review && (
+          <Ul>
             <li key={review.id}>
-              <h5>{review.author}</h5>
-              <p>{review.content}</p>
+              <h5>{review.name}</h5>
+              <p>{review.dimension}</p>
+              <span>{review.type}</span>
             </li>
-          ))}
-        </Ul>
-      ) : (
-        <h3>There are no reviews yet</h3>
-      )}
+          </Ul>
+        )}
+      </Suspense>
     </>
   );
 };

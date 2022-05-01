@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
-import {
-  Outlet,
-  useNavigate,
-  useSearchParams,
-  useParams,
-  useLocation,
-} from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeading } from 'components/PageHeading/PageHeading';
 import { Link } from 'react-router-dom';
 import * as movieApi from '../../services/movie-api';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const MoviePage = ({ goBack }) => {
+const MoviePage = () => {
   const [name, setName] = useState('');
   const [movies, setMovies] = useState(null);
   const navigate = useNavigate();
   const [searchParam] = useSearchParams();
-  const params = useParams();
-  const location = useLocation();
+  const notify = () => toast('Wow so easy!');
+
   const handleChange = e => {
     const { value } = e.currentTarget;
     setName(value);
@@ -26,7 +22,8 @@ const MoviePage = ({ goBack }) => {
     e.preventDefault();
     const modifiedName = name.toLowerCase();
     movieApi.searchMovies(modifiedName).then(setMovies);
-    navigate(`../movies?query=${name}`, { replace: false });
+    notify();
+    navigate(`../characters?query=${name}`, { replace: false });
     reset();
     return name;
   };
@@ -55,7 +52,7 @@ const MoviePage = ({ goBack }) => {
           onChange={handleChange}
           autoComplete="off"
           autoFocus
-          placeholder="Search movie"
+          placeholder="Search character"
         />
 
         <button type="submit">Search</button>
@@ -71,7 +68,7 @@ const MoviePage = ({ goBack }) => {
           <PageHeading>Results</PageHeading>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/characters/${movie.id}`}>{movie.name}</Link>
             </li>
           ))}
         </ul>

@@ -10,7 +10,7 @@ const MoviePageView = ({ goBack }) => {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    movieApi.fetchMovieById(movieId).then(setMovie);
+    movieApi.fetchCharactersById(movieId).then(setMovie);
   }, [movieId]);
 
   return (
@@ -23,18 +23,15 @@ const MoviePageView = ({ goBack }) => {
         <div key={movie.id}>
           <h2>{movie.name}</h2>{' '}
           <Div>
-            <Img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-            ></Img>
+            <Img src={movie.image}></Img>
             <Description>
-              <h3>{movie.original_title}</h3>
-              <p>{movie.vote_average}</p>
-              <h4>Overview</h4>
-              <p>{movie.overview}</p>
-              <h5>Genres</h5>
-              {movie.genres.map(genre => (
-                <p>{genre.name.split(',')}</p>
-              ))}
+              <h3>{movie.species}</h3>
+              <p>{movie.status}</p>
+              <h4>Location</h4>
+              <p>{movie.location.name}</p>
+              <h5>Gender</h5>
+
+              <p>{movie.gender}</p>
 
               {/* <ul>
                 <li key={movie.id}>
