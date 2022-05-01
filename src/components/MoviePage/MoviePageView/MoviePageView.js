@@ -4,10 +4,11 @@ import { Description } from './MoviePageView.styled';
 import { Img } from './MoviePageView.styled';
 import { Div } from './MoviePageView.styled';
 import * as movieApi from '../../../services/movie-api';
+import { LikeOrDislike } from '../../PageLikeButton/PageLikeButton';
 
 const MoviePageView = ({ goBack }) => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [character, setMovie] = useState(null);
 
   useEffect(() => {
     movieApi.fetchCharactersById(movieId).then(setMovie);
@@ -15,23 +16,24 @@ const MoviePageView = ({ goBack }) => {
 
   return (
     <>
-      {!movie && <h2>Loading...</h2>}
+      {!character && <h2>Loading...</h2>}
       <button type="button" onClick={goBack}>
         Go Back
       </button>
-      {movie && (
-        <div key={movie.id}>
-          <h2>{movie.name}</h2>{' '}
+      {character && (
+        <div key={character.id}>
+          <h2>{character.name}</h2>{' '}
           <Div>
-            <Img src={movie.image}></Img>
-            <Description>
-              <h3>{movie.species}</h3>
-              <p>{movie.status}</p>
-              <h4>Location</h4>
-              <p>{movie.location.name}</p>
-              <h5>Gender</h5>
+            <Img src={character.image}></Img>
 
-              <p>{movie.gender}</p>
+            <Description>
+              <h3>{character.species}</h3>
+              <p>{character.status}</p>
+              <h4>Location</h4>
+              <p>{character.location.name}</p>
+              <h5>Gender</h5>
+              <p>{character.gender}</p>
+              <LikeOrDislike characterId={character.id} />
 
               {/* <ul>
                 <li key={movie.id}>
