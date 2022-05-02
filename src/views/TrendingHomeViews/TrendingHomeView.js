@@ -10,8 +10,6 @@ const TrendingHomeView = () => {
     movieAPI.fetchAllCharacters().then(setMovies);
   }, []);
 
-  console.log(movies);
-
   return (
     <>
       <PageHeading>Ricky&Morty</PageHeading>

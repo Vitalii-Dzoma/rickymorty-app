@@ -34,7 +34,7 @@ const MoviePageView = ({ goBack }) => {
               <h5>Gender</h5>
               <p>{character.gender}</p>
               <LikeOrDislike characterId={character.id} />
-              <HowManyCharactersWereLiked />
+              <HowManyCharactersWereLiked characterId={character.id} />
               {/* <ul>
                 <li key={movie.id}>
                   Overview

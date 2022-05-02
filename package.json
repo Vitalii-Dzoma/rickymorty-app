@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -14,9 +15,13 @@
     "react-dom": "^18.0.0",
     "react-facebook-login": "^4.1.1",
     "react-hot-toast": "^2.2.0",
+    "react-persist": "^1.0.2",
+    "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-toastify": "^8.2.0",
+    "redux-persist": "^6.0.0",
+    "redux-toolkit": "^1.1.2",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.3"
   },
