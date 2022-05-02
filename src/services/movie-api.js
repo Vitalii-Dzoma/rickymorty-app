@@ -28,3 +28,10 @@ export async function searchMovies(query) {
   );
   return response.data.results;
 }
+
+export async function fetchLikedCharacters(chars) {
+  const response = await axios.get(
+    `https://rickandmortyapi.com/api/character/${chars}`
+  );
+  return response.data.results;
+}

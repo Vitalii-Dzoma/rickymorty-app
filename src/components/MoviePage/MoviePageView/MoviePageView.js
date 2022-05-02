@@ -5,7 +5,7 @@ import { Img } from './MoviePageView.styled';
 import { Div } from './MoviePageView.styled';
 import * as movieApi from '../../../services/movie-api';
 import { LikeOrDislike } from '../../PageLikeButton/PageLikeButton';
-
+import { HowManyCharactersWereLiked } from 'components/HowManyCharactersWereLiked/HowMany';
 const MoviePageView = ({ goBack }) => {
   const { movieId } = useParams();
   const [character, setMovie] = useState(null);
@@ -34,7 +34,7 @@ const MoviePageView = ({ goBack }) => {
               <h5>Gender</h5>
               <p>{character.gender}</p>
               <LikeOrDislike characterId={character.id} />
-
+              <HowManyCharactersWereLiked />
               {/* <ul>
                 <li key={movie.id}>
                   Overview
