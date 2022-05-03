@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import * as movieAPI from '../../services/movie-api';
 import { Ul } from './Reviews.styled';
 import toast from 'react-hot-toast';
+import { HowManyCharactersWereLiked } from 'components/HowManyCharactersWereLiked/HowMany';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -20,6 +21,7 @@ const Reviews = () => {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+        <HowManyCharactersWereLiked />
         {review && (
           <Ul>
             <li key={review.id}>

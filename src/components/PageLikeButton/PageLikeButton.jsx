@@ -1,10 +1,18 @@
 import React, { useReducer } from 'react';
-
 const HANDLE_LIKE = Symbol('HANDLE_LIKE');
 const HANDLE_DISLIKE = Symbol('HANDLE_DISLIKE');
+const onLocalStorage = state => {
+  if (!state) {
+    return 0;
+  } else {
+    return state;
+  }
+};
+
+const currentState = JSON.parse(localStorage.getItem('charactersData'));
 const initialState = {
-  likes: 0,
-  dislikes: 0,
+  likes: onLocalStorage(currentState.likes),
+  dislikes: onLocalStorage(currentState.dislikes),
   active: null,
 };
 
@@ -34,17 +42,12 @@ const reducer = (state, action) => {
 export const LikeOrDislike = ({ characterId }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { likes, dislikes, active } = state;
-  if (likes) {
-    localStorage.setItem(
-      'charactersData',
-      JSON.stringify({ id: characterId, likes: likes })
-    );
-  } else {
-    localStorage.setItem(
-      'charactersData',
-      JSON.stringify({ id: characterId, dislikes: dislikes })
-    );
-  }
+
+  localStorage.setItem(
+    'charactersData',
+    JSON.stringify({ id: characterId, likes: likes, dislikes: dislikes })
+  );
+
   return (
     <div style={{ display: 'flex' }}>
       <button

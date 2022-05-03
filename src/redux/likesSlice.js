@@ -6,14 +6,14 @@ const likesSlice = createSlice({
   name: 'likes',
   initialState: {
     dataLikes: [],
-    dataDislikes: [],
+    likedChars: null,
   },
   reducers: {
     addLikes(state, action) {
       state.dataLikes.push(action.payload);
     },
-    addDislikes(state, action) {
-      state.dataDislikes.push(action.payload);
+    addChars(state, action) {
+      return (state.likedChars = action.payload);
     },
   },
 });
@@ -24,7 +24,7 @@ const persistConfig = {
 };
 
 export const likesReducer = persistReducer(persistConfig, likesSlice.reducer);
-export const { addLikes, addDislikes } = likesSlice.actions;
+export const { addLikes, addChars } = likesSlice.actions;
 
 // Selectors
 // export const getItemsValue = state => state.items.contacts;
