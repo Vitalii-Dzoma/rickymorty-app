@@ -36,51 +36,56 @@ export const App = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <div className="container">
-            <Card style={{ width: '600px' }}>
-              <Card.Header>
-                {!login && (
-                  <FacebookLogin
-                    appId="382321387140432"
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    scope="public_profile,user_friends"
-                    callback={responseFacebook}
-                    icon="fa-facebook"
-                  />
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <div
+              className="container"
+              style={{ margin: '0 auto', fontFamily: 'fantasy' }}
+            >
+              <Card style={{ width: '1170px' }}>
+                <Card.Header>
+                  {!login && (
+                    <FacebookLogin
+                      appId="382321387140432"
+                      autoLoad={true}
+                      fields="name,email,picture"
+                      scope="public_profile,user_friends"
+                      callback={responseFacebook}
+                      icon="fa-facebook"
+                    />
+                  )}
+                  {login && <Image src={picture} roundedCircle />}
+                </Card.Header>
+                {login && (
+                  <Card.Body>
+                    <Card.Title>{data.name}</Card.Title>
+                    <Card.Text>{data.email}</Card.Text>
+                  </Card.Body>
                 )}
-                {login && <Image src={picture} roundedCircle />}
-              </Card.Header>
-              {login && (
-                <Card.Body>
-                  <Card.Title>{data.name}</Card.Title>
-                  <Card.Text>{data.email}</Card.Text>
-                </Card.Body>
-              )}
-              {login && (
-                <Routes>
-                  <Route path="/" element={<HomePage />}>
-                    <Route index element={<TrendingHomeView />} />
-                    <Route path="characters" element={<MoviePage />} />
-                    <Route
-                      path=":movieId/"
-                      element={<MoviePageView goBack={goBackBtn} />}
-                    >
-                      <Route path=":movieId" element={<InnerNavigator />}>
-                        <Route path="cast" element={<Cast />} />
-                        <Route path="reviews" element={<Review />} />
+                {login && (
+                  <Routes>
+                    <Route path="/" element={<HomePage />}>
+                      <Route index element={<TrendingHomeView />} />
+                      <Route path="characters" element={<MoviePage />} />
+                      <Route
+                        path=":movieId/"
+                        element={<MoviePageView goBack={goBackBtn} />}
+                      >
+                        <Route path=":movieId" element={<InnerNavigator />}>
+                          <Route path="cast" element={<Cast />} />
+                          <Route path="reviews" element={<Review />} />
+                        </Route>
                       </Route>
                     </Route>
-                  </Route>
-                </Routes>
-              )}
-            </Card>
-          </div>
-        </PersistGate>
-      </Provider>
-    </Suspense>
+                  </Routes>
+                )}
+              </Card>
+            </div>
+          </PersistGate>
+        </Provider>
+      </Suspense>
+    </div>
   );
 };

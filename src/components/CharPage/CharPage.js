@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeading } from 'components/PageHeading/PageHeading';
 import { Link } from 'react-router-dom';
-import * as movieApi from '../../services/movie-api';
+import * as movieApi from '../../services/chars-api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Input, Button, Form, Ul } from './CharPage.styled';
 const MoviePage = () => {
   const [name, setName] = useState('');
   const [movies, setMovies] = useState(null);
@@ -44,8 +45,8 @@ const MoviePage = () => {
 
   return (
     <>
-      <form onSubmit={HandleSubmit}>
-        <input
+      <Form onSubmit={HandleSubmit}>
+        <Input
           type="text"
           name=""
           value={name}
@@ -53,25 +54,29 @@ const MoviePage = () => {
           autoComplete="off"
           autoFocus
           placeholder="Search character"
-        />
-
-        <button type="submit">Search</button>
-      </form>
+        />{' '}
+        <Button type="submit">Search</Button>
+      </Form>
 
       <Outlet />
 
       {movies && (
-        <ul>
-          <button type="submit" onClick={GoBackBtnRender}>
+        <Ul>
+          <Button type="submit" onClick={GoBackBtnRender}>
             Go Back
-          </button>
+          </Button>
           <PageHeading>Results</PageHeading>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/characters/${movie.id}`}>{movie.name}</Link>
+              <Link
+                to={`/characters/${movie.id}`}
+                style={{ textDecoration: 'none', color: 'black' }}
+              >
+                {movie.name}
+              </Link>
             </li>
           ))}
-        </ul>
+        </Ul>
       )}
     </>
   );

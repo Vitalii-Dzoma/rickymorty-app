@@ -3,8 +3,9 @@ import { Outlet, useParams } from 'react-router-dom';
 import { Description } from './CharPageView.styled';
 import { Img } from './CharPageView.styled';
 import { Div } from './CharPageView.styled';
-import * as movieApi from '../../../services/movie-api';
-import { LikeOrDislike } from '../../PageLikeButton/PageLikeButton';
+import { Button } from './CharPageView.styled';
+import * as movieApi from '../../../services/chars-api';
+import { LikeOrDislike } from '../../PageLikeComponent/PageLikeComponent';
 import { HowManyCharactersWereLiked } from 'components/HowManyCharactersWereLiked/HowMany';
 const MoviePageView = ({ goBack }) => {
   const { movieId } = useParams();
@@ -17,9 +18,9 @@ const MoviePageView = ({ goBack }) => {
   return (
     <>
       {!character && <h2>Loading...</h2>}
-      <button type="button" onClick={goBack}>
+      <Button type="button" onClick={goBack}>
         Go Back
-      </button>
+      </Button>
       {character && (
         <div key={character.id}>
           <h2>{character.name}</h2>{' '}

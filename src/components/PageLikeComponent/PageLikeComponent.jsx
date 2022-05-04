@@ -1,17 +1,10 @@
 import React, { useReducer } from 'react';
 import { addLikes } from 'redux/likesSlice';
 import { useDispatch } from 'react-redux';
+import { ButtonDislike, ButtonLike } from './PageLikeComponent.styled';
 const HANDLE_LIKE = Symbol('HANDLE_LIKE');
 const HANDLE_DISLIKE = Symbol('HANDLE_DISLIKE');
-// const onLocalStorage = (state = 0) => {
-//   if (!state) {
-//     return 0;
-//   } else {
-//     return state;
-//   }
-// };
 
-// const currentState = JSON?.parse(localStorage.getItem('charactersData'));
 const persistState = JSON?.parse(localStorage.getItem('persist:likes'));
 const persistStorageMatching = () => {};
 
@@ -70,7 +63,7 @@ export const LikeOrDislike = ({ characterId }) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <button
+      <ButtonLike
         style={{
           color: active === 'like' ? 'green' : 'black',
           marginRight: '10px',
@@ -82,8 +75,8 @@ export const LikeOrDislike = ({ characterId }) => {
         <strong>Likes</strong>
         &nbsp;|&nbsp;
         {likes}
-      </button>
-      <button
+      </ButtonLike>
+      <ButtonDislike
         style={{ color: active === 'dislike' ? 'red' : 'black' }}
         onClick={() =>
           active !== 'dislike' ? dispatch({ type: HANDLE_DISLIKE }) : null
@@ -92,7 +85,7 @@ export const LikeOrDislike = ({ characterId }) => {
         <strong>Dislikes</strong>
         &nbsp;|&nbsp;
         {dislikes}
-      </button>
+      </ButtonDislike>
     </div>
   );
 };

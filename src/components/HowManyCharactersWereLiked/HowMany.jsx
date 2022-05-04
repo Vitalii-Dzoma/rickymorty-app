@@ -1,8 +1,13 @@
 import { useState } from 'react';
 
 import { Img } from 'components/CharPage/CharPageView/CharPageView.styled';
-import * as movieAPI from '../../services/movie-api';
+import * as movieAPI from '../../services/chars-api';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from 'components/CharPage/CharPageView/CharPageView.styled';
+import {
+  Div,
+  Description,
+} from 'components/CharPage/CharPageView/CharPageView.styled';
 
 export const HowManyCharactersWereLiked = ({ characterId }) => {
   const [arr, setArr] = useState([]);
@@ -19,22 +24,24 @@ export const HowManyCharactersWereLiked = ({ characterId }) => {
 
   return (
     <>
-      <button style={{ color: 'red' }} onClick={fetchLikes}>
-        Double click!{' '}
-      </button>
+      <Button style={{ color: 'red' }} onClick={fetchLikes}>
+        Press me!
+      </Button>
       <h2>
         Liked Characters
         {dataLikes &&
           dataLikes.map(character => (
-            <div key={character.id}>
+            <Div key={character.id}>
               <Img src={character.image}></Img>
-              <h3>{character.species}</h3>
-              <p>{character.status}</p>
-              <h4>Location</h4>
-              <p>{character.location.name}</p>
-              <h5>Gender</h5>
-              <p>{character.gender}</p>
-            </div>
+              <Description>
+                <h3>{character.species}</h3>
+                <p>{character.status}</p>
+                <h4>Location</h4>
+                <p>{character.location.name}</p>
+                <h5>Gender</h5>
+                <p>{character.gender}</p>
+              </Description>
+            </Div>
           ))}
       </h2>
       ;

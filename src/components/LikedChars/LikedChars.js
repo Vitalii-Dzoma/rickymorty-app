@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import * as movieAPI from '../../services/movie-api';
+import * as movieAPI from '../../services/chars-api';
 import { Ul } from './Reviews.styled';
 import toast from 'react-hot-toast';
 import { HowManyCharactersWereLiked } from 'components/HowManyCharactersWereLiked/HowMany';
@@ -22,16 +22,7 @@ const Reviews = () => {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <HowManyCharactersWereLiked />
-        {review && (
-          <Ul>
-            <li key={review.id}>
-              Location
-              <h5>{review.name}</h5>
-              <p>{review.dimension}</p>
-              <span>{review.type}</span>
-            </li>
-          </Ul>
-        )}
+     
       </Suspense>
     </>
   );

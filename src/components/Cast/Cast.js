@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import * as movieAPI from '../../services/movie-api';
+import * as movieAPI from '../../services/chars-api';
 import { Img } from './Cast.styled';
 import { DivImage } from './Cast.styled';
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Heading = styled.h1`
+  width: 100vw;
   padding: 8px;
   margin-top: 0;
   border-radius: 8px;
