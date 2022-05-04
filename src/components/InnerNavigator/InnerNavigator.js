@@ -12,7 +12,7 @@ const InnerNavigator = () => {
           <Link to="cast">Cast</Link>
         </li>
         <li>
-          <Link to="reviews">Location</Link>
+          <Link to="reviews">Liked characters</Link>
         </li>
       </ul>
       <Outlet />

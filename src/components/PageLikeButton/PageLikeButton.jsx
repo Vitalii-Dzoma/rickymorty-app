@@ -1,18 +1,23 @@
 import React, { useReducer } from 'react';
+import { addLikes } from 'redux/likesSlice';
+import { useDispatch } from 'react-redux';
 const HANDLE_LIKE = Symbol('HANDLE_LIKE');
 const HANDLE_DISLIKE = Symbol('HANDLE_DISLIKE');
-const onLocalStorage = state => {
-  if (!state) {
-    return 0;
-  } else {
-    return state;
-  }
-};
+// const onLocalStorage = (state = 0) => {
+//   if (!state) {
+//     return 0;
+//   } else {
+//     return state;
+//   }
+// };
 
-const currentState = JSON.parse(localStorage.getItem('charactersData'));
+// const currentState = JSON?.parse(localStorage.getItem('charactersData'));
+const persistState = JSON?.parse(localStorage.getItem('persist:likes'));
+const persistStorageMatching = () => {};
+
 const initialState = {
-  likes: onLocalStorage(currentState.likes),
-  dislikes: onLocalStorage(currentState.dislikes),
+  likes: 0,
+  dislikes: 0,
   active: null,
 };
 
@@ -41,11 +46,26 @@ const reducer = (state, action) => {
 
 export const LikeOrDislike = ({ characterId }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const dispatch1 = useDispatch();
   const { likes, dislikes, active } = state;
-
+  const name = JSON.parse(persistState.dataLikes).find(
+    idObj => idObj.id === characterId
+  );
+  console.log(name);
   localStorage.setItem(
     'charactersData',
-    JSON.stringify({ id: characterId, likes: likes, dislikes: dislikes })
+    JSON.stringify({
+      id: characterId,
+      likes: likes,
+      dislikes: dislikes,
+    })
+  );
+  dispatch1(
+    addLikes({
+      id: characterId,
+      likes: likes,
+      dislikes: dislikes,
+    })
   );
 
   return (

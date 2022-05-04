@@ -8,48 +8,33 @@ import { addLikes, addChars } from 'redux/likesSlice';
 
 export const HowManyCharactersWereLiked = ({ characterId }) => {
   const [arr, setArr] = useState([]);
-  //   const [dislikes, setDislikes] = useState([]);
   const [dataLikes, setDataLikes] = useState(null);
-  const [dataDislikes, setDataDislikes] = useState(null);
   const reduxLikes = useSelector(state => state.likes.dataLikes);
-
-  const dispatch = useDispatch();
-
-  const countLikes = () => {
-    const data = JSON.parse(localStorage.getItem('charactersData'));
-
-    //   movieAPI.fetchLikedCharacters(dislikes).then(setData);
-
-    dispatch(addLikes(data));
-    //   movieAPI.fetchLikedCharacters(likes).then(setData);
-
-    return data;
-  };
-  const fetchLikes = () => {
-    countLikes();
-    const emptyArr = [];
+  const emptyArr = [];
+  const onFillArr = () => {
     reduxLikes.forEach(element => {
       emptyArr.push(element.id);
     });
+    return emptyArr;
+  };
 
-    setArr([...arr, ...emptyArr]);
-    console.log(arr);
+  const fetchLikes = () => {
+    setArr([...arr, ...onFillArr()]);
     if (arr.length > 0) {
       movieAPI.fetchLikedCharacters(arr).then(setDataLikes);
     }
   };
 
-  console.log(dataLikes);
   return (
     <>
       <button style={{ color: 'red' }} onClick={fetchLikes}>
-        Liked characters
+        Double click!{' '}
       </button>
       <h2>
         Liked Characters
         {dataLikes &&
           dataLikes.map(character => (
-            <>
+            <div key={character.id}>
               <Img src={character.image}></Img>
               <h3>{character.species}</h3>
               <p>{character.status}</p>
@@ -57,7 +42,7 @@ export const HowManyCharactersWereLiked = ({ characterId }) => {
               <p>{character.location.name}</p>
               <h5>Gender</h5>
               <p>{character.gender}</p>
-            </>
+            </div>
           ))}
       </h2>
       ;

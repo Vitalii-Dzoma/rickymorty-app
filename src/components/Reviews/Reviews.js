@@ -25,6 +25,7 @@ const Reviews = () => {
         {review && (
           <Ul>
             <li key={review.id}>
+              Location
               <h5>{review.name}</h5>
               <p>{review.dimension}</p>
               <span>{review.type}</span>

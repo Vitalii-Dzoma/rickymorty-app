@@ -41,7 +41,7 @@ export const App = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <div class="container">
+          <div className="container">
             <Card style={{ width: '600px' }}>
               <Card.Header>
                 {!login && (
