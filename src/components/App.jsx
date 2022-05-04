@@ -7,15 +7,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './../redux/storage';
 const InnerNavigator = lazy(() => import('./InnerNavigator/InnerNavigator'));
 const HomePage = lazy(() => import('./HomePage/HomePage'));
-const MoviePage = lazy(() => import('./MoviePage/MoviePage'));
+const MoviePage = lazy(() => import('./CharPage/CharPage'));
 const Cast = lazy(() => import('./Cast/Cast'));
-const Review = lazy(() => import('./Reviews/Reviews'));
+const Review = lazy(() => import('./LikedChars/LikedChars'));
 const MoviePageView = lazy(() =>
-  import('./MoviePage/MoviePageView/MoviePageView')
+  import('./CharPage/CharPageView/CharPageView')
 );
-const TrendingHomeView = lazy(() =>
-  import('../views/TrendingHomeViews/TrendingHomeView')
-);
+const TrendingHomeView = lazy(() => import('../views/HomeView/HomeView'));
 export const App = () => {
   const [login, setLogin] = useState(false);
   const [data, setData] = useState({});

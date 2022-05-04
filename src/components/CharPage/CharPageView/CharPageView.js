@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { Description } from './MoviePageView.styled';
-import { Img } from './MoviePageView.styled';
-import { Div } from './MoviePageView.styled';
+import { Description } from './CharPageView.styled';
+import { Img } from './CharPageView.styled';
+import { Div } from './CharPageView.styled';
 import * as movieApi from '../../../services/movie-api';
 import { LikeOrDislike } from '../../PageLikeButton/PageLikeButton';
 import { HowManyCharactersWereLiked } from 'components/HowManyCharactersWereLiked/HowMany';

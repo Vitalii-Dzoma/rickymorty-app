@@ -1,27 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { Description } from './HowMany.styled';
-import { Img } from 'components/MoviePage/MoviePageView/MoviePageView.styled';
+import { useState } from 'react';
+
+import { Img } from 'components/CharPage/CharPageView/CharPageView.styled';
 import * as movieAPI from '../../services/movie-api';
 import { useSelector, useDispatch } from 'react-redux';
-import { addLikes, addChars } from 'redux/likesSlice';
 
 export const HowManyCharactersWereLiked = ({ characterId }) => {
   const [arr, setArr] = useState([]);
   const [dataLikes, setDataLikes] = useState(null);
   const reduxLikes = useSelector(state => state.likes.dataLikes);
-  const emptyArr = [];
-  const onFillArr = () => {
-    reduxLikes.forEach(element => {
-      emptyArr.push(element.id);
-    });
-    return emptyArr;
-  };
 
   const fetchLikes = () => {
-    setArr([...arr, ...onFillArr()]);
-    if (arr.length > 0) {
-      movieAPI.fetchLikedCharacters(arr).then(setDataLikes);
+    const datas = reduxLikes.map(el => el.id);
+
+    if (datas.length > 0) {
+      movieAPI.fetchLikedCharacters(datas).then(setDataLikes);
     }
   };
 
